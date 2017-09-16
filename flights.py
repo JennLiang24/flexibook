@@ -14,6 +14,6 @@ class Flights(object):
         departure_date = flight_data["departure_date"]
         price = flight_data["results"]["price"]
         airline = flight_data["results"][flight_index]["airline"]
-
+        
 
 
