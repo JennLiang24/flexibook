@@ -3,8 +3,8 @@ import json
 import flights
 import locations
 import datetime
+import flexitour
 
->>>>>>> origin/adjustflight
 # requires python requests - to install -> pip install requests
 APIKEY = "GP0KwjT7Gkv5ea6wCWuIwonyUKZOVBKN"
 
@@ -29,21 +29,21 @@ def getMultipleDestinationFlights(origin, destinations):
         orig = d
     return flightArray
 
-#getFlights(locations.Location("BOS",'2017-09-17'), locations.Location("SEA",'0000-00-00'))
-dest = []
-dest.append(locations.Location("SFO",'2017-09-22'))
-dest.append(locations.Location("SEA",'2017-10-04'))
-a = getMultipleDestinationFlights(locations.Location("BOS",'2017-09-17'),dest)
-print()
-print()
-print()
-for f in a:
-    print(f)
-    print("---------------" + "origin: " + str(f.origin) + ", destination: " + str(f.destination) + ", departs_at: " + str(f.departs_at) + ", arrives_at: " + str(f.arrives_at) + ", airline: " + str(f.airline) + ", price: " + str(f.price) + ", stops: " + str(f.stops))
+    #getFlights(locations.Location("BOS",'2017-09-17'), locations.Location("SEA",'0000-00-00'))
+    dest = []
+    dest.append(locations.Location("SFO",'2017-09-22'))
+    dest.append(locations.Location("SEA",'2017-10-04'))
+    a = getMultipleDestinationFlights(locations.Location("BOS",'2017-09-17'),dest)
+    print()
+    print()
+    print()
+    for f in a:
+        print(f)
+        print("---------------" + "origin: " + str(f.origin) + ", destination: " + str(f.destination) + ", departs_at: " + str(f.departs_at) + ", arrives_at: " + str(f.arrives_at) + ", airline: " + str(f.airline) + ", price: " + str(f.price) + ", stops: " + str(f.stops))
 
-    r = requests.get('http://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=GP0KwjT7Gkv5ea6wCWuIwonyUKZOVBKN&origin=BOS&destination=SEA&departure_date=2017-09-17&number_of_results=100&HTTP/1.1', APIKEY)
-    fly = flights.Flights(r.text,flight_index)
-    return fly
+        r = requests.get('http://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=GP0KwjT7Gkv5ea6wCWuIwonyUKZOVBKN&origin=BOS&destination=SEA&departure_date=2017-09-17&number_of_results=100&HTTP/1.1', APIKEY)
+        fly = flights.Flights(r.text,flight_index)
+        return fly
 
 #takes the current flight index and current Location originlocation and
 #finds next possible flight to arrive at the destination earlier
@@ -54,8 +54,6 @@ def flightEarlier(flight_index, originlocation):
 
     #the number of flight results
     length_results = len(flight_data["results"])
-    length_results = 20
-
 
     for i in range(flight_index, length_results):
         fly2 = flights.Flights(r.text, i)
@@ -99,7 +97,5 @@ def flightLater(flight_index, originlocation):
     print("No later flights found")
     return
 
-getFlights("dfbhj", "aejhf")
 
-flightLater(0,0)
 
