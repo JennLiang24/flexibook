@@ -34,20 +34,20 @@ def getMultipleDestinationFlights(origin, destinations):
     return flightArray
 
     #getFlights(locations.Location("BOS",'2017-09-17'), locations.Location("SEA",'0000-00-00'))
-    dest = []
-    dest.append(locations.Location("SFO",'2017-09-22'))
-    dest.append(locations.Location("SEA",'2017-10-04'))
-    a = getMultipleDestinationFlights(locations.Location("BOS",'2017-09-17'),dest)
-    print()
-    print()
-    print()
-    for f in a:
-        print(f)
-        print("---------------" + "origin: " + str(f.origin) + ", destination: " + str(f.destination) + ", departs_at: " + str(f.departs_at) + ", arrives_at: " + str(f.arrives_at) + ", airline: " + str(f.airline) + ", price: " + str(f.price) + ", stops: " + str(f.stops))
+dest = []
+dest.append(locations.Location("SFO",'2017-09-22'))
+dest.append(locations.Location("SEA",'2017-09-28'))
+dest[0].setDate(2)
+a = getMultipleDestinationFlights(locations.Location("BOS",'2017-09-17'),dest)
+#print()
+#print()
+#print()
+#for f in a:
+    #print(f)
+    #print("---------------" + "origin: " + str(f.origin) + ", destination: " + str(f.destination) + ", departs_at: " + str(f.departs_at) + ", arrives_at: " + str(f.arrives_at) + ", airline: " + str(f.airline) + ", price: " + str(f.price) + ", stops: " + str(f.stops))
 
-        r = requests.get('http://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=GP0KwjT7Gkv5ea6wCWuIwonyUKZOVBKN&origin=BOS&destination=SEA&departure_date=2017-09-17&number_of_results=100&HTTP/1.1', APIKEY)
-        fly = flights.Flights(r.text,flight_index)
-        return fly
+
+
 
 #takes the current flight index and current Location originlocation and
 #finds next possible flight to arrive at the destination earlier
