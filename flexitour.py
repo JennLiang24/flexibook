@@ -21,6 +21,7 @@ def findCheapestOrder(origin, list_of_locations):
     minprice = sys.float_info.max
     minorder = []
     for i in list_of_orders:
+
         destinations = list(i) + [origin]
         originloc = locations.Location(origin[0], userinput.origin_date)
         daysfromorigin = 0
@@ -31,6 +32,7 @@ def findCheapestOrder(origin, list_of_locations):
             destinationlocs[j].locations.setDate(daysfromorigin)
 
         flight_itinerary = flexibook.getMultipleDestinationFlights(originloc, destinationlocs)
+
         if flight_itinerary.price < minprice:
             minorder = flight_itinerary
             minprice = flight_itinerary.price
