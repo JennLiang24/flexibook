@@ -7,7 +7,7 @@ class Flights(object):
     arrives_at = "0000-00-00T00:00"
     price = "0.0"
     airline = "null"
-    stops = 1000
+    stops = 0
 
     def __init__(self, jsonflightinfo, flight_index):
         flight_data = json.loads(jsonflightinfo)
