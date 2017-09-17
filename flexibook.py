@@ -4,6 +4,7 @@ import flights
 import locations
 import datetime
 import flexitour
+import userinput
 
 # requires python requests - to install -> pip install requests
 APIKEY = "GP0KwjT7Gkv5ea6wCWuIwonyUKZOVBKN"
@@ -11,6 +12,8 @@ APIKEY = "GP0KwjT7Gkv5ea6wCWuIwonyUKZOVBKN"
 #stores the index of the flight option
 flight_index = 0
 totalPriceOfLastTripCalculated = 0
+
+
 # given origin and destination location objects -> returns array of flights
 def getFlights(origin, destination):
     link = 'http://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=GP0KwjT7Gkv5ea6wCWuIwonyUKZOVBKN&origin='+ str(origin.place) +'&destination=' + str(destination.place) +'&departure_date='+ str(origin.date) + '&number_of_results=250&HTTP/1.1'
@@ -19,7 +22,9 @@ def getFlights(origin, destination):
     
     print("origin: " + str(f.origin) + ", destination: " + str(f.destination) + ", departs_at: " + str(f.departs_at) + ", arrives_at: " + str(f.arrives_at) + ", airline: " + str(f.airline) + ", price: " + str(f.price) + ", stops: " + str(f.stops))
     return r
+
 # return array with cheapest flights on the selected dates to the selected places
+
 def getMultipleDestinationFlights(origin, destinations):
     flightArray = []
     totalPrice = 0
@@ -45,8 +50,6 @@ a = getMultipleDestinationFlights(locations.Location("BOS",'2017-09-17'),dest)
 #for f in a:
     #print(f)
     #print("---------------" + "origin: " + str(f.origin) + ", destination: " + str(f.destination) + ", departs_at: " + str(f.departs_at) + ", arrives_at: " + str(f.arrives_at) + ", airline: " + str(f.airline) + ", price: " + str(f.price) + ", stops: " + str(f.stops))
-
-
 
 
 #takes the current flight index and current Location originlocation and
@@ -101,5 +104,8 @@ def flightLater(flight_index, originlocation):
     print("No later flights found")
     return
 
+
+#TODO
+#create main function that calls setOriginDate() and setOrigin() and setDestinations()
 
 
