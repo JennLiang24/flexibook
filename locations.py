@@ -8,3 +8,4 @@ class Location(object):
         self.date = date
 
 
+

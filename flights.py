@@ -20,7 +20,7 @@ class Flights(object):
         self.airline = outbound_flight["marketing_airline"]
         self.price = flight_data["results"][flight_index]["fare"]["total_price"]
         self.stops = len(flight_data["results"][flight_index]["itineraries"][0]["outbound"]["flights"]) - 1
-        
+
 
 
 
