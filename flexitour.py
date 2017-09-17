@@ -25,4 +25,3 @@ def findCheapestOrder(origin, list_of_locations):
 
     return minorder
 
-generatePermutations(["BOS", "NYC", "LAX", "SEA"])
