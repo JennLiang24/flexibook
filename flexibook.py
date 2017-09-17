@@ -4,13 +4,12 @@ import flights
 import locations
 import datetime
 
->>>>>>> origin/adjustflight
 # requires python requests - to install -> pip install requests
 APIKEY = "GP0KwjT7Gkv5ea6wCWuIwonyUKZOVBKN"
 
 #stores the index of the flight option
 flight_index = 0
-
+totalPriceOfLastTripCalculated = 0
 # given origin and destination location objects -> returns array of flights
 def getFlights(origin, destination):
     link = 'http://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=GP0KwjT7Gkv5ea6wCWuIwonyUKZOVBKN&origin='+ str(origin.place) +'&destination=' + str(destination.place) +'&departure_date='+ str(origin.date) + '&number_of_results=250&HTTP/1.1'
@@ -22,11 +21,15 @@ def getFlights(origin, destination):
 # return array with cheapest flights on the selected dates to the selected places
 def getMultipleDestinationFlights(origin, destinations):
     flightArray = []
+    totalPrice = 0
     orig = origin
     for d in destinations:
         f = getFlights(orig,d)
-        flightArray.append(flights.Flights(f.text,0))
+        fly = flights.Flights(f.text,0)
+        totalPrice += fly.price
+        flightArray.append(fly)
         orig = d
+    totalPriceOfLastTripCalculated = totalPrice
     return flightArray
 
 #getFlights(locations.Location("BOS",'2017-09-17'), locations.Location("SEA",'0000-00-00'))
